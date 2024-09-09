@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndexedDB File Upload and Slideshow</title>
+    <style>
+        #startButton{
+            color: rgb(248, 248, 248);
+        }
+        #startButton:hover{
+            /* border:1px solid black; */
+            box-shadow: 2px 1px 5px rgb(152, 152, 152);
+            transform:scale(1.1);
+            cursor: pointer;
+            /* color: rgb(118, 13, 13); */
+        }
+    </style>
+</head>
+<body style="margin: 0px;height: 100%;">
+
+
+    <!-- <h2>Slideshow of Uploaded Files</h2> -->
+    <div id="slideshowContainer" style="display: flex;align-items: center;height: 100%;width: 100%;justify-content: center;">
+        <div style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+            <h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-align: center;">MirrorLink</h1>
+            <p style="color: rgb(128, 128, 128);">MirrorLink is a Solution for Managing your big Screen Contents in an easy way using your smartphone. </p>
+            <ul style="color: rgb(128, 128, 128);">
+                <li>Download MirrorLink App from Playstore or Appstore</li>
+                <li>Log in to your MirrorLink Account</li>
+                <li>Add Your sites, mirrors into it.</li>
+                <li>Upload your contents to each mirrors as you like</li>
+            </ul>
+            <!-- <input type="file" id="fileInput">
+            <button onclick="saveFile()">Save File to IndexedDB</button> -->
+           
+            <div style="display: flex;justify-content: right;">
+                <button onclick="startSlideshow()" id="startButton" style="display: none;padding: 10px 20px;background-color: rgb(22, 105, 213);font-weight: 300;border-radius: 5px;border:0px;">Start</button>
+                <p id="loadingText">Loading Contents Please Wait...</p>
+            </div>
+        </div>
+   
+</div>
+    <script src="index.js"></script>
+    <!-- <script>
+        const socket = new WebSocket('ws://localhost:8000/ws/mirror/?key=mirror1admin');
+
+        // Listen for the connection to be established
+        socket.onopen = function() {
+            console.log('WebSocket connection established');
+        };
+
+        // Listen for messages from the server
+        socket.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            console.log('Message from server:', data);
+        };
+    </script> -->
+</body>
+</html>

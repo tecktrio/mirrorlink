@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket File Upload</title>
+</head>
+<body>
+    <input type="file" id="fileInput" />
+    <button onclick="uploadFile()">Upload</button>
+
+    <script>
+        const socket = new WebSocket('ws://localhost:8000/ws/controller/?key=mirror1admin');
+
+        // Listen for the connection to be established
+        socket.onopen = function() {
+            console.log('WebSocket connection established');
+        };
+
+        // Listen for messages from the server
+        socket.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            console.log('Message from server:', data);
+        };
+
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const content = fileInput.files[0];
+
+            if (!content) {
+                alert('Please select a file');
+                return;
+            }
+
+            // Read the file as binary data
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const fileData = event.target.result;
+                // Send file data via WebSocket
+                socket.send(JSON.stringify({
+                    'service': 'upload_content',
+                    'content_title': content.name,
+                    'content': fileData,
+                    'mirror_name':"mirror1",
+                    'site_name':'site'
+                }));
+            };
+            reader.readAsDataURL(content); // Read file as base64 encoded string
+        }
+    </script>
+</body>
+</html>
